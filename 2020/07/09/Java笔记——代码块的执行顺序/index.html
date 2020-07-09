@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hello World | MoonStars(zxc)</title>
+  <title>Java笔记——代码块的执行顺序 | MoonStars(zxc)</title>
   <meta name="keywords" content="">
-  <meta name="description" content="Hello World | MoonStars(zxc)">
+  <meta name="description" content="Java笔记——代码块的执行顺序 | MoonStars(zxc)">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="java中常使用的四类代码块为静态代码块、构造代码块、构造函数块和普通代码块。 1.静态代码块直接在类中定义，有static修饰的代码块 12345class Test&amp;#123;	static &amp;#123;		System.out.println(&quot;static 执行&quot;);	&amp;#125;&amp;#125; 2.构造代码块直接在类中定义，无static修饰代码块 123456class Test&amp;#12">
 <meta property="og:type" content="article">
@@ -218,9 +218,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Java笔记——代码块的执行顺序" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Hello World</h1>
+        <h1 class="article-title">Java笔记——代码块的执行顺序</h1>
     
     <div class="article-meta">
         
@@ -230,7 +230,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2020-07-07 19:25:48'>2020-07-07 19:25</time>
+            Created At : <time class="date" title='Updated At: 2020-07-09 22:50:46'>2020-07-09 22:51</time>
         
     </div>
     <div class="article-meta">
@@ -252,7 +252,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-静态代码块"><span class="toc-text">1.静态代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-构造代码块"><span class="toc-text">2.构造代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-构造函数"><span class="toc-text">3.构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-普通代码块"><span class="toc-text">4.普通代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试"><span class="toc-text">测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-text">结论</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -268,19 +268,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <p>java中常使用的四类代码块为静态代码块、构造代码块、构造函数块和普通代码块。</p>
+<h2 id="1-静态代码块"><a href="#1-静态代码块" class="headerlink" title="1.静态代码块"></a>1.静态代码块</h2><p>直接在类中定义，有static修饰的代码块</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">"static 执行"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-构造代码块"><a href="#2-构造代码块" class="headerlink" title="2.构造代码块"></a>2.构造代码块</h2><p>直接在类中定义，无static修饰代码块</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(<span class="string">"构造代码块   执行"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-构造函数"><a href="#3-构造函数" class="headerlink" title="3.构造函数"></a>3.构造函数</h2><p>构造函数是我们最熟悉的，我们通过构造函数来对类实例化对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"构造函数执行   执行"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-普通代码块"><a href="#4-普通代码块" class="headerlink" title="4.普通代码块"></a>4.普通代码块</h2><p>只在非static修饰的普通方法中的代码块</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"普通代码块   执行"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来进行一个小测试，来确定它们的执行顺序</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hexo_2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		MyTest a = <span class="keyword">new</span> MyTest();</span><br><span class="line">		a.function();</span><br><span class="line">		MyTest b = <span class="keyword">new</span> MyTest();</span><br><span class="line">		System.out.println(MyTest.x);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTest</span></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> x=<span class="number">0</span>;</span><br><span class="line">	&#123;</span><br><span class="line">		x++;</span><br><span class="line">		System.out.println(<span class="string">"构造代码块   执行"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"构造函数块   执行"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"普通代码块   执行"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		x++;</span><br><span class="line">		System.out.println(<span class="string">"静态代码块   执行"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它们的执行结果如何？x值为多少？<br>执行结果如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">静态代码块   执行</span><br><span class="line">构造代码块   执行</span><br><span class="line">构造函数执行   执行</span><br><span class="line">普通代码块   执行</span><br><span class="line">构造代码块   执行</span><br><span class="line">构造函数执行   执行</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>从执行结果中我们可以知道它们的执行情况依次是：</p>
+<p><strong>静态代码块-&gt;构造代码块-&gt;构造函数块-&gt;普通代码块</strong></p>
+<p><strong><em>对于x值为3是否有疑问呢？它如何得来的呢？</em></strong></p>
+<p>这是因为static关键字里静态代码块，仅仅在第一次实例化对象时执行，而构造代码块在每一次实例化都会执行一次。也就是在实例化a时执行了两次 <strong>x++</strong> ，而实例化b时只执行了一次 <strong>x++</strong>。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
