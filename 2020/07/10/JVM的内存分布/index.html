@@ -164,7 +164,7 @@
     <div><a class="about  hasFriend  site_url"  href="/about">About</a><a style="width: 50%"  class="friends">Friends</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="4">
-<input type="hidden" id="yelog_site_word_count" value="1.5k">
+<input type="hidden" id="yelog_site_word_count" value="2.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -312,12 +312,12 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2020-07-10 22:44:04'>2020-07-10 22:39</time>
+            Created At : <time class="date" title='Updated At: 2020-07-31 15:45:29'>2020-07-10 22:39</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:35</span>
+        <span>Count:984</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -352,7 +352,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Jvm的内存区域划分"><a href="#Jvm的内存区域划分" class="headerlink" title="Jvm的内存区域划分"></a>Jvm的内存区域划分</h2><h2 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1.程序计数器"></a>1.程序计数器</h2><h2 id="2-Java虚拟机栈和本地方法栈"><a href="#2-Java虚拟机栈和本地方法栈" class="headerlink" title="2.Java虚拟机栈和本地方法栈"></a>2.Java虚拟机栈和本地方法栈</h2><h2 id="3-Java堆"><a href="#3-Java堆" class="headerlink" title="3.Java堆"></a>3.Java堆</h2><h2 id="4-方法区"><a href="#4-方法区" class="headerlink" title="4.方法区"></a>4.方法区</h2><h2 id="5-直接内存"><a href="#5-直接内存" class="headerlink" title="5.直接内存"></a>5.直接内存</h2>
+        <h2 id="Jvm的内存区域划分"><a href="#Jvm的内存区域划分" class="headerlink" title="Jvm的内存区域划分"></a>Jvm的内存区域划分</h2><p>一般将JVM运行时的数据区域划分为五个区域：程序计数器、java虚拟机栈和本地方法栈、java堆、方法区和直接内存。<br><img src="https://img-blog.csdnimg.cn/20200731144230931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDkyOTI0NA==,size_16,color_FFFFFF,t_70" alt=""><br>学习每个区域的内容时，主要解决三个问题它存在作用、主要内容或基本原理、需要注意的特别之处，带着这三个问题，我们就能很好的了解它了。</p>
+<h2 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1.程序计数器"></a>1.程序计数器</h2><p>程序计数器作用：程序执行的指示器，负责指向下一条要执行字节码指令，我们程序中的循环、跳转、异常的处理都需要它来实现。<br>基本原理：字节码解释器通过修改程序计数器的值指向下一条要执行的指令，在执行Java方法时，程序计数器指向方法的入口，而执行本地方法时值为null。<br>特点：程序计数器属于线程私有属性，每一个线程都有一个对应的程序计数器，此外它是《JVM规范》中唯一没有规定OutOfMemoryError的区域。<br><img src="https://img-blog.csdnimg.cn/20200731145743877.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDkyOTI0NA==,size_16,color_FFFFFF,t_70" alt=""></p>
+<h2 id="2-Java虚拟机栈和本地方法栈"><a href="#2-Java虚拟机栈和本地方法栈" class="headerlink" title="2.Java虚拟机栈和本地方法栈"></a>2.Java虚拟机栈和本地方法栈</h2><p>作用：java虚拟机栈是Java方法执行的线程内存模型<br>基本原理：在进入一个方法时，Jvm会在虚拟机栈中创建一个栈帧，用于存储方法中的局部变量表、出口信息等。方法从开始执行到结束的过程就对应栈帧入栈到出栈的过程。<br>内容：既然时方法的内存模型，那么方法中的基本变量类型、对象引用指针、返回值等一些信息都存储于局部变量表中。值得一提的是，在进入一个方法时，方法栈帧所需要的大小是已知的。JVM通过槽来确定方法的内存大小，如一个Long对应一个槽，int对应一个槽，对象引用对应一个槽。<br>特点：Java虚拟机栈属于线程私有区域，当栈帧的深度超过最大允许的深度时抛出StackOverFlowError异常，当无法申请到足够的空间时抛出OutOfMemoryError异常。<br>本地方法栈于java虚拟机栈极其相似，区别是本地方法栈负责执行本地方法，这里就不再赘述了。<br><img src="https://img-blog.csdnimg.cn/20200731151809718.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDkyOTI0NA==,size_16,color_FFFFFF,t_70" alt=""></p>
+<h2 id="3-Java堆"><a href="#3-Java堆" class="headerlink" title="3.Java堆"></a>3.Java堆</h2><p>作用：在《java虚拟机规范》中对它的描述是：所有的对象以及数组都当在堆上分配。<br>基本原理：当碰到new时，JVM在确认对象的类已经正确加载后，在java堆中为其划分一块空间，首先初始化为0。之后再执行init()为其赋值上我们期望的值。值得一提的是，java堆是垃圾回收机制（GC）的主要回收区域，也是JVM中最大的一块区域。<br>特点：java堆属于线程共享区域，但有时为了提升对象分配的效率，java堆可以划分多个线程私有的缓存区。当无法申请到足够的空间是抛出OutOfMemoryError。<br><img src="https://img-blog.csdnimg.cn/20200731153212102.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDkyOTI0NA==,size_16,color_FFFFFF,t_70" alt=""></p>
+<h2 id="4-方法区"><a href="#4-方法区" class="headerlink" title="4.方法区"></a>4.方法区</h2><p>作用：用于存储已被虚拟机加载的类型信息、常量、编译后的代码缓存、静态变量等<br>特点：属于线程共享区域，无法申请到足够的空间时抛出OutOfMemoryError。<br>方法区内包括运行时的常量池，里面主要存储了类的版本、接口、方法、字段等描述信息还有各种字面量和符号引用。<br><img src="https://img-blog.csdnimg.cn/20200731154008810.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDkyOTI0NA==,size_16,color_FFFFFF,t_70" alt=""></p>
+<h2 id="5-直接内存"><a href="#5-直接内存" class="headerlink" title="5.直接内存"></a>5.直接内存</h2><p>作用：直接内存并不属于java虚拟机内存，而是在虚拟机之外划分的一块区域，我们可以通过DirectByteBuffer对象对其进行操作，目的为了避免在java堆和OS堆中来回复制数据。<br>特点：申请不大足够的空间时，抛出OutOfMemoryError，此外，这部分内存的回收由操作系统来执行。<br><img src="https://img-blog.csdnimg.cn/20200731154341101.png" alt=""></p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1677522738@qq.com </span>
     </div>
